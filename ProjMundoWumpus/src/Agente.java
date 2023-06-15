@@ -8,7 +8,7 @@ public class Agente {
 		jAtual = jInicial;
 		percep = new boolean[7]; // vetor de percepções do agente?
 		mw.inserirAgente(iAtual,jAtual);  // mundando para true a posição 6 do vetor "mundo" que representa a presença do agente
-		this.setPercep(mw);
+		this.setPercep(mw, false);
 	}
 	
 	public int[] getPosicaoAtual() {  // retorna a posição atual do agente
@@ -27,18 +27,20 @@ public class Agente {
 		return percep;
 	}
 	
-	public void setPercep(MundoWumpus mw) {
+	public void setPercep(MundoWumpus mw, boolean brilho) {
 		int i;
 		boolean[] p = mw.getPercepcoesSala(iAtual, jAtual);
 		for(i=0; i<7; i++) {
 			percep[i] = p[i];  // recebendo os valores boleanos relativos ao conjunto de percepções do agente da sala em que o mesmo foi inserido!
 		}
+		if(brilho)
+			percep[2] = percep[5] = brilho; //levando o tesouro
 	}
-	
-	public void mover(int iNovo, int jNovo, MundoWumpus mw) {
+
+	public void mover(int iNovo, int jNovo, MundoWumpus mw, boolean brilho) {
 		mw.atualizarAgente(iAtual, jAtual, iNovo, jNovo);
 		this.setPosAtual(iNovo,jNovo);
-		this.setPercep(mw);
+		this.setPercep(mw, brilho);
 	}
 	
 

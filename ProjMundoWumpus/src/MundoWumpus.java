@@ -119,4 +119,9 @@ public class MundoWumpus {
 	public boolean[] getPercepcoesSala(int i, int j) {
 		return mundo[i][j];  //retorna o conjunto de percepções que o agente tem quando é inserido em uma sala!
 	}
+	
+	public void setTesouro(int i, int j) {
+		mundo[i][j][2] = true;
+		mundo[i][j][5] = true;
+	}
 }
